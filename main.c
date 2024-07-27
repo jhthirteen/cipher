@@ -9,11 +9,20 @@ int main(int argc, char **argv){
     }
     
     int shiftKey = atoi(argv[1]);
+
     char *message = malloc(100 * sizeof(char));
-    fgets(message, 100, stdin);
-    char *out = caesarCipher(shiftKey, message);
-    char *recreate = decipherCaesarCipher(shiftKey, out);
-    printf("%s", recreate);
+    fgets(message, 100, stdin); //handles input -> message to be encrypted
+
+    char *encryptedMessage = malloc(strlen(message) * sizeof(char));
+    caesarCipher(shiftKey, message, encryptedMessage);
+    printf("%s\n", encryptedMessage);
+
+    char *recreateMessage = malloc(strlen(encryptedMessage) * sizeof(char));
+    decipherCaesarCipher(shiftKey, encryptedMessage, recreateMessage);
+    printf("%s", recreateMessage);
+    
+
     free(message); //deallocate memory 
-    free(out); //deallocate memory -> out allocates within the function
+    free(encryptedMessage);
+    free(recreateMessage);
 }

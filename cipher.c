@@ -4,24 +4,20 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-char* caesarCipher(int shift, char *message){
-    char *ePtr = malloc(strlen(message) * sizeof(char)); //dynamically allocate memory to hold our encrypted message
-    char *eIter = ePtr;
+void caesarCipher(int shift, char *message, char *encryptedPtr){
+    char *encryptedIter = encryptedPtr;
     while( *message != '\0' ){ //iterate through the entirety of the message we are trying to encrypt
-        *eIter = ( ((int)*message - 32 + shift)%93 )+32;
+        *encryptedIter = ( ((int)*message - 32 + shift)%93 )+32;
         message++;
-        eIter++;
+        encryptedIter++;
     }
-    return ePtr;
 }
 
-char* decipherCaesarCipher(int shift, char *encrypted){ //this function does not work yet!!!!
-    char *message = malloc(strlen(encrypted) * sizeof(char));
-    char *mIter = message;
+void decipherCaesarCipher(int shift, char *encrypted, char *messagePtr){ //this function does not work yet!!!!
+    char *messageIter = messagePtr;
     while( *encrypted != '\0' ){
-        *mIter = ( ((int)*encrypted + 32 - shift)%93 )+32;
+        *messageIter = ( ((int)*encrypted - 32 - shift)%93 )+32;
         encrypted++;
-        mIter++;
+        messageIter++;
     }
-    return message;
 }
