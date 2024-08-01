@@ -7,7 +7,7 @@
 void caesarCipher(int shift, char *message, char *encryptedPtr){
     char *encryptedIter = encryptedPtr;
     while( *message != '\0' ){ //iterate through the entirety of the message we are trying to encrypt
-        *encryptedIter = ( ((int)*message - 32 + shift)%93 )+32;
+        *encryptedIter = ( ((int)*message - 32 + shift)%95 )+32;
         message++;
         encryptedIter++;
     }
@@ -16,7 +16,7 @@ void caesarCipher(int shift, char *message, char *encryptedPtr){
 void decipherCaesarCipher(int shift, char *encrypted, char *messagePtr){ //this function does not work yet!!!!
     char *messageIter = messagePtr;
     while( *encrypted != '\0' ){
-        *messageIter = ( ((int)*encrypted - 32 - shift)%93 )+32;
+        *messageIter = ( ((int)*encrypted - 32 + (95 - shift))%95 )+32;
         encrypted++;
         messageIter++;
     }

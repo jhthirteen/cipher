@@ -12,6 +12,7 @@ int main(int argc, char **argv){
 
     char *message = malloc(100 * sizeof(char));
     fgets(message, 100, stdin); //handles input -> message to be encrypted
+    message[strlen(message)-1] = '\0';
 
     char *encryptedMessage = malloc(strlen(message) * sizeof(char));
     caesarCipher(shiftKey, message, encryptedMessage);
